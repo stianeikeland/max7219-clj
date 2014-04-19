@@ -207,5 +207,7 @@
    "ó" [0x00 0x04 0x1e 0x1f 0x1e 0x04]})
 
 (defn str-to-bitmap [text]
-  (flatten (map #(font (str %) (font " ")) text)))
-
+  (-> (map #(font (str %) (font " ")) text)
+      (vec)
+      (conj 0)
+      (flatten)))
