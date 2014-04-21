@@ -11,5 +11,5 @@
 
 (defn send-bytes! [channel data]
   (let [c (channels channel)]
-    (Spi/wiringPiSPIDataRW c (byte-array data) (count data))
+    (Spi/wiringPiSPIDataRW c (byte-array (map unchecked-byte data)) (count data))
     (count data)))
