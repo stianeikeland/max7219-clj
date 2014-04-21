@@ -2,6 +2,9 @@
 
 Clojure library for max7219 led matrix driver (on raspberry pi).
 
+[![Max7219 space invader](http://blagg.tadkom.net/images/max7219/anim.gif)](https://vimeo.com/92539944)
+
+
 The max7219 is serial interfaced 8x8 (or 7 segment) LED driver.
 Several drivers can be chained in series. You use the driver by
 sending it a command and data (1 byte + 1 byte) over SPI. Each driver
@@ -20,6 +23,8 @@ the second column for the first display (commands are shifted to the next
 display if a new byte pair is received).
 
 Datasheet: [MAX7219-MAX7221.pdf](http://pdfserv.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf)
+
+More information with examples available in this [blog post](http://blagg.tadkom.net/2014/04/21/max7219-rpi-clojure/).
 
 ## Usage
 
