@@ -23,12 +23,16 @@
   [channel display-count]
   (let [c (spi/open! channel)]
     (if (nil? c) nil
-        (do (spi/send-bytes! c [(reg :scan-limit) (byte 0x7)])
-            (spi/send-bytes! c [(reg :decode-mode) (byte 0x0)])
-            (spi/send-bytes! c [(reg :shutdown) (byte 0x1)])
-            (spi/send-bytes! c [(reg :display-test) (byte 0x0)])
-            {:channel channel
-             :displays display-count}))))
+        (do
+          (doseq [x [[(reg :scan-limit) (byte 0x7)]
+                     [(reg :decode-mode) (byte 0x0)]
+                     [(reg :shutdown) (byte 0x1)]
+                     [(reg :display-test) (byte 0x0)]]]
+            (->> (repeat display-count x)
+                 (flatten)
+                   (spi/send-bytes! c)))
+          {:channel channel
+           :displays display-count}))))
 
 (defn set-column!
   "Set column x on all displays to value from list"

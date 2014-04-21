@@ -11,10 +11,10 @@
   (open! c 2) => connection
   (provided
     (spi/open! c) => c
-    (spi/send-bytes! c [(byte 0xb) (byte 0x7)]) => nil   ; scan-limit
-    (spi/send-bytes! c [(byte 0x9) (byte 0x0)]) => nil   ; decode mode
-    (spi/send-bytes! c [(byte 0xc) (byte 0x1)]) => nil   ; shutdown
-    (spi/send-bytes! c [(byte 0xf) (byte 0x0)]) => nil)) ; display test
+    (spi/send-bytes! c [(byte 0xb) (byte 0x7) (byte 0xb) (byte 0x7)]) => nil   ; scan-limit
+    (spi/send-bytes! c [(byte 0x9) (byte 0x0) (byte 0x9) (byte 0x0)]) => nil   ; decode mode
+    (spi/send-bytes! c [(byte 0xc) (byte 0x1) (byte 0xc) (byte 0x1)]) => nil   ; shutdown
+    (spi/send-bytes! c [(byte 0xf) (byte 0x0) (byte 0xf) (byte 0x0)]) => nil)) ; display test
 
 (fact "set-column"
   (let [input [3 5 7]
